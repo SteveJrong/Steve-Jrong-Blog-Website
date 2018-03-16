@@ -1,0 +1,63 @@
+@CHARSET "UTF-8";
+
+.splitpageopera {
+	list-style-type: none;
+	margin: 0px auto;
+	width: 350px;
+}
+
+.splitpageopera li {
+	float: left;
+	margin: auto 10px;
+	display: inline;
+	padding: 0px;
+}
+
+.post-category::after {
+	content: "";
+}
+
+.post-category a span {
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+/* 2017/5/9 所有博文页面样式 */
+.main-data{
+	overflow: hidden; 
+	margin:0px auto;
+}
+
+.main-title,.main-author,.main-date{
+	float: left;
+}
+.main-title ul,.main-author ul,.main-date ul{
+	overflow: hidden;
+	list-style-type: none;
+}
+.main-title ul li,.main-author ul li,.main-date ul li{
+	float: left;
+	padding: 15px auto;
+}
+
+.main-data div{
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+
+@media (max-width: 991px) {
+	.main-date{
+		display: none;
+	}
+}
+
+@media (max-width: 648px) {
+	.main-author{
+		display: none;
+	}
+	
+	.main-title{
+		margin-left: 3%;
+	}
+}

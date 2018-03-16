@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+.person-info-nav{
+	margin: 2em;
+	margin-top: -1.25em;
+	overflow: hidden;
+}
+
+.person-info-grid{
+	margin:0em auto;
+	width:30em;
+	overflow: hidden;
+}
+
+.person-header-container,.person-basic-info-container{
+	float: left;
+}
+
+.person-header-container{
+	width:15%;
+}
+
+.person-basic-info-container{
+	width:65%;
+	margin-left: 1em;
+}
+
+/* 表示在400px以内 */
+@media (max-width:400px) {
+	.person-header-container,.person-basic-info-container{
+		float: none;
+		margin: 0em auto;
+	}
+	
+	.person-header-container{
+		width:50%;
+	}
+	
+	.person-basic-info-container{
+		width:85%;
+		margin-top: 1.25em;
+	}
+	
+	.person-info-grid{
+		margin-left: -2.15em;
+	}
+}
+
+.zeroModal-edit{
+	line-height:2em;
+	margin:0em auto;
+	width:50%;
+}
+
+.zeroModal-edit p{
+	text-align: left;
+}
+
+.zeroModal-edit p span{
+	margin: auto 0.85em;
+}
+
+#oldPwdMsg,#newPwdMsg,#reNewPwdMsg,#nickNameMsg,#userGenderMsg,#uAgeMsg,#sQAnswerMsg,#emailAddressMsg,#qqNumMsg{
+	color:red;
+}

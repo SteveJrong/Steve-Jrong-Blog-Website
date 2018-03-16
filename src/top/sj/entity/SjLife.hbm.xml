@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    SjLife - 生活（“玩生活”板块）实体类映射文件
+-->
+<hibernate-mapping>
+    <class name="top.sj.entity.SjLife" table="sj_life">
+        <id name="LId" type="java.lang.Integer">
+            <column name="L_ID" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="sjUsers" class="top.sj.entity.SjUsers" fetch="select">
+            <column name="L_U_ID" not-null="true" />
+        </many-to-one>
+        <property name="LContents" type="java.lang.String">
+            <column name="L_CONTENTS" length="1000" not-null="true" />
+        </property>
+        <property name="LPublishdate" type="java.sql.Timestamp">
+            <column name="L_PUBLISHDATE" length="19" not-null="true" />
+        </property>
+        <property name="LModifydate" type="java.sql.Timestamp">
+            <column name="L_MODIFYDATE" length="19" />
+        </property>
+        <property name="LIpaddress" type="java.lang.String">
+            <column name="L_IPADDRESS" length="50" />
+        </property>
+        <property name="LDeviceinfo" type="java.lang.String">
+            <column name="L_DEVICEINFO" length="100" />
+        </property>
+        <property name="LSysteminfo" type="java.lang.String">
+            <column name="L_SYSTEMINFO" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

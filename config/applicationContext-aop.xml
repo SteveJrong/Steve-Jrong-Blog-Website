@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+							http://www.springframework.org/schema/tx
+							http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+							http://www.springframework.org/schema/aop
+							http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+							http://www.springframework.org/schema/context   
+    						http://www.springframework.org/schema/context/spring-context.xsd
+							">
+	<!-- Spring AOP相关的配置文件 -->
+	
+	<!-- 定义切面和切入点并将切点织入切面 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* top.sj.service.*.*(..))" id="pointcut" />
+		<aop:advisor advice-ref="txAdv" pointcut-ref="pointcut" />
+	</aop:config>
+	<aop:config>
+		<aop:pointcut expression="execution(* top.sj.manage.service.*.*(..))" id="pointcut2" />
+		<aop:advisor advice-ref="txAdv" pointcut-ref="pointcut2" />
+	</aop:config>
+	<aop:config>
+		<aop:pointcut expression="execution(* top.sj.mobile.service.*.*(..))" id="pointcut3" />
+		<aop:advisor advice-ref="txAdv" pointcut-ref="pointcut3" />
+	</aop:config>
+	
+	<!-- 全文索引后置增强 -->
+	<bean id="fullTextIndexesAfterRunning" class="top.sj.aop.FullTextIndexesAfter">
+		<property name="mFullTextIndexesService" ref="mFullTextIndexesService"></property>
+	</bean>
+	<aop:config>
+		<aop:pointcut expression="(execution(* top.sj.manage.dao.ArticlesDao.add* (..))) or (execution(* top.sj.manage.dao.ArticlesDao.del* (..))) or (execution(* top.sj.manage.dao.ArticleTypesDao.update* (..))) or (execution(* top.sj.manage.dao.ArticleTypesDao.del* (..))) or (execution(* top.sj.manage.dao.ArticleTypesDao.add* (..)))" id="fulltextindexespointcut"/>
+		<aop:advisor advice-ref="fullTextIndexesAfterRunning" pointcut-ref="fulltextindexespointcut"/>
+	</aop:config>
+</beans>

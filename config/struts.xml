@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<include file="struts-manage.xml"></include>
+	<include file="struts-mobile.xml"></include>
+	
+	<!-- 设置开发者模式 -->
+	<constant name="struts.devMode" value="false" />
+	
+	<!-- 设置编码格式 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	
+	<!-- 默认后缀名 -->
+	<constant name="struts.action.extension" value="html,action,,"/>
+	
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- 定义一个拦截器 -->
+		 <interceptors>
+			<interceptor name="memcachedInterceptor"
+				class="top.sj.interceptor.MemcachedInterceptor">
+			</interceptor>
+			
+			<interceptor name="articleViewsInterceptor"
+				class="top.sj.interceptor.ArticleViewsInterceptor">
+			</interceptor>
+			
+			<!-- <interceptor name="loginSuccessedInterceptor"
+				class="top.sj.interceptor.LoginAtferInterceptor">
+			</interceptor> -->
+		</interceptors> 
+		
+		<global-results>
+			<result name="home" type="dispatcher">loadArticlesInfoAtIndexPage.action</result>
+			<result name="login" type="dispatcher">/views/front/user_login/login.jsp</result>
+			<result name="repair" type="dispatcher">/views/common/repairing.jsp</result>
+		</global-results>
+
+		<!-- 载入主页的文章信息的Action -->
+		<action name="loadArticlesInfoAtIndexPage" class="loadArticlesInfoAtIndexPage">
+			<result name="success">/views/front/index/homepage.jsp</result>
+			<result name="nil">/views/common/errorof404.jsp</result>
+			 <interceptor-ref name="memcachedInterceptor"></interceptor-ref> 
+		</action>
+
+		<!-- 用户登录的Action -->
+		<action name="userLogin" class="userLogin">
+			<result name="failed" type="dispatcher">/views/front/user_login/login.jsp</result>
+			<result name="success" type="redirect">${redirectUrl}</result>
+			<!-- <interceptor-ref name="loginSuccessedInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref> -->
+		</action>
+		
+		<!-- 登录后重定向的Action -->
+		<!-- <action name="redirectFromLogin" class="redirectFromLogin">
+			跳转文章详情页
+			<result name="articleDetail">loadArticleDetailAtSinglePage.action?aid=${articleId}</result>
+		</action> -->
+
+		<!-- 用户注册的Action -->
+		<action name="userRegister" class="userRegister">
+<!-- 			<result name="success" type="redirectAction">loadArticlesInfoAtIndexPage</result> -->
+			<result name="failed">/views/front/user_register/register.jsp</result>
+		</action>
+
+		<!-- 载入文章详情页的Action -->
+		<action name="loadArticleDetailAtSinglePage" class="loadArticleDetailAtSinglePage">
+			<result name="success">/views/front/article_detail/single.jsp</result>
+			<result name="nil">/views/common/exceptionpage.jsp</result>
+			<interceptor-ref name="articleViewsInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!-- 文章列表分页的Action -->
+		<action name="splitPageAtSinglePage" class="splitPageAtSinglePage">
+			<result name="success">/views/front/articles_list/allarticles.jsp</result>
+			<result name="nil">/views/common/exceptionpage.jsp</result>
+		</action>
+
+		<!-- 按查看的博文类型加载文章信息的Action -->
+		<action name="loadArticlesInfoAccordingToLookingType" class="loadArticlesInfoAccordingToLookingType">
+			<result name="success">/views/front/articles_list/articleslookingtypesort.jsp</result>
+			<result name="nil">/views/common/exceptionpage.jsp</result>
+		</action>
+		
+		<!-- 转到主页的Action -->
+		<action name="home" class="top.sj.web.HomePageAction">
+			 <interceptor-ref name="memcachedInterceptor"></interceptor-ref>
+		</action>
+		
+		<!-- 用户注销账户的Action -->
+		<action name="logoutAccount" class="logoutAccount">
+			<result name="logout" type="redirectAction">loadArticlesInfoAtIndexPage</result>
+		</action>
+		
+		<!-- 载入玩生活信息相关的Action -->
+		<!-- 		<action name="loadPlayLife" class="loadPlayLife"> -->
+		<!-- 			<result name="success">/views/front/play_life/index.jsp</result> -->
+		<!-- 		</action> -->
+		
+		<!-- 初始化Memcached组件的Action -->
+		<!-- <action name="home" class="top.sj.web.HomePageAction">
+			<interceptor-ref name="homePageInterceptor"></interceptor-ref>
+		</action> -->
+		
+		<!-- 全文搜索相关的Action -->
+		<action name="fullTextSearch" class="fullTextSearch">
+			<result name="success">/views/front/articles_search/index.jsp</result>
+			<result name="error" type="redirectAction">loadArticlesInfoAtIndexPage</result>
+		</action>
+		
+		<!-- 评论/回复相关的Action -->
+		<action name="commentsOrReply" class="commentsOrReply">
+			<!-- <result name="success" type="redirect">${redirectUrl}</result>
+			<result name="failed" type="redirect">${redirectUrl}</result> -->
+		</action>
+		
+		<!-- 文件附件下载的Action -->
+		<action name="downFile" class="downloadFileAttachments">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param> 
+				<param name="inputName">inputStream</param> 
+				<param name="contentDisposition">attachment;filename="${fileName}"</param> 
+				<param name="bufferSize">4096</param> 
+			</result>
+		</action>
+		
+		<!-- 载入“用户中心”页的Action -->
+		<action name="loadPersonalCenterInfo" class="loadPersonalCenterInfo">
+			<result name="success">/views/front/personal_center/personal.jsp</result>
+		</action>
+		
+		<!-- 上传用户头像的Action -->
+		<action name="uploadUserHeader" class="uploadUserHeader"></action>
+	</package>
+	
+	<package name="json_default1" namespace="/" extends="json-default">
+		<!-- 载入大数据页面相关的Action -->
+		<action name="loadBigData" class="loadBigData">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 为评论/回复消息点赞的Action -->
+		<action name="doPraiseOfCOrR" class="doPraiseOfCOrR">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 载入用户信息的Action -->
+		<action name="loadUserInfo" class="loadUserInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 更新用户信息的Action -->
+		<action name="updUserInfo" class="updUserInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 更新用户账户信息的Action -->
+		<action name="updUserAccountInfo" class="updUserAccountInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 剪切并设置用户头像的Action -->
+		<action name="cutAndSetUserHeader" class="cutAndSetUserHeader">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 载入MixRadio模块数据信息的Action -->
+		<action name="loadMixRadioInfo" class="loadMixRadioInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 载入玩生活信息相关的Action -->
+		<action name="loadPlayLife" class="loadPlayLife">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+	</package>
+</struts>    

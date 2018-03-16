@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+		
+	<!-- Web相关的配置文件 -->
+
+	<!-- 载入主页的文章信息的Action -->
+	<bean id="loadArticlesInfoAtIndexPage" class="top.sj.web.LoadArticlesInfoAtHomePageAction">
+		<property name="articlesService" ref="articlesService"></property>
+		<property name="articleTypesService" ref="articleTypesService"></property>
+	</bean>
+
+	<!-- 用户登录的Action -->
+	<bean id="userLogin" class="top.sj.web.UserLoginAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+	<!-- 用户注册的Action -->
+	<bean id="userRegister" class="top.sj.web.UserRegisterAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+	<!-- 载入文章详情页的Action -->
+	<bean id="loadArticleDetailAtSinglePage" class="top.sj.web.LoadArticleDetailAtSinglePageAction">
+		<property name="articlesService" ref="articlesService"></property>
+		<property name="articleTypesService" ref="articleTypesService"></property>
+		<property name="commentsOrReplyService" ref="commentsOrReplyService"></property>
+		<property name="fileAttachmentsService" ref="fileAttachmentsService"></property>
+	</bean>
+
+	<!-- 文章列表分页的Action -->
+	<bean id="splitPageAtSinglePage" class="top.sj.web.LoadArticleListAction">
+		<property name="articlesService" ref="articlesService"></property>
+	</bean>
+
+	<!-- 按时间加载文章信息的Action -->
+	<bean id="loadArticlesInfoAccordingToLookingType" class="top.sj.web.LoadArticlesInfoAccordingToLookingTypeAction">
+		<property name="articlesService" ref="articlesService"></property>
+	</bean>
+	
+	<!-- 用户注销账户的Action -->
+	<bean id="logoutAccount" class="top.sj.web.UserLogoutAction"></bean>
+	
+	<!-- 载入大数据页面相关的Action -->
+	<bean id="loadBigData" class="top.sj.web.LoadBigDataAction">
+		<property name="bigDataService" ref="bigDataService"></property>
+	</bean>
+	
+	<!-- 载入玩生活信息相关的Action -->
+	<bean id="loadPlayLife" class="top.sj.web.LoadPlayLifeInfoAction">
+		<property name="lifeService" ref="lifeService"></property>
+	</bean>
+	
+	<!-- 全文搜索相关的Action -->
+	<bean id="fullTextSearch" class="top.sj.web.FullTextSearchAction"></bean>
+	
+	<!-- 评论/回复相关的Action -->
+	<bean id="commentsOrReply" class="top.sj.web.CommentsOrReplyAction">
+		<property name="commentsOrReplyService" ref="commentsOrReplyService"></property>
+	</bean>
+	
+	<!-- 为评论/回复消息点赞的Action -->
+	<bean id="doPraiseOfCOrR" class="top.sj.web.DoPraiseAction">
+		<property name="commentsOrReplyService" ref="commentsOrReplyService"></property>
+	</bean>
+	
+	<!-- 文件附件下载的Action -->
+	<bean id="downloadFileAttachments" class="top.sj.web.DownloadFilesAction">
+		<property name="fileAttachmentsService" ref="fileAttachmentsService"></property>
+	</bean>
+	
+	<!-- 载入“用户中心”页的Action -->
+	<bean id="loadPersonalCenterInfo" class="top.sj.web.LoadPersonalCenterAction"></bean>
+	
+	<!-- 载入用户信息的Action -->
+	<bean id="loadUserInfo" class="top.sj.web.LoadUserInfoAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<!-- 更新用户信息的Action -->
+	<bean id="updUserInfo" class="top.sj.web.UpdateUserInfoAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<!-- 更新用户账户信息的Action -->
+	<bean id="updUserAccountInfo" class="top.sj.web.UpdateAccountInfoAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<!-- 上传用户头像的Action -->
+	<bean id="uploadUserHeader" class="top.sj.web.UploadHeaderAction"></bean>
+	
+	<!-- 剪切并设置用户头像的Action -->
+	<bean id="cutAndSetUserHeader" class="top.sj.web.CutHeaderAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<!-- 载入MixRadio模块数据信息的Action -->
+	<bean id="loadMixRadioInfo" class="top.sj.web.LoadMixRadioInfoAction"></bean>
+</beans>

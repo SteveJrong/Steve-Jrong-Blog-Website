@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+							
+	<!-- 移动平台Web相关的配置文件 -->
+
+	<!-- 【移动平台】用户登录的Action -->
+	<bean id="mobileUserLogin" class="top.sj.mobile.web.UserLoginMobileAction">
+		<property name="mobileUserService" ref="mobileUserService"></property>
+	</bean>
+	
+	<!-- 【移动平台】用户注册的Action -->
+	<bean id="mobileUserRegister" class="top.sj.mobile.web.UserRegisterMobileAction">
+		<property name="mobileUserService" ref="mobileUserService"></property>
+	</bean>
+	
+	<!-- 【移动平台】载入全部博文信息的Action -->
+	<bean id="mobileLoadAllArticlesInfo" class="top.sj.mobile.web.LoadAllArticlesInfoByMainPageAction">
+		<property name="mobileArticlesService" ref="mobileArticlesService"></property>
+	</bean>
+	
+	<!-- 【移动平台】获取博文详情信息的Action -->
+	<bean id="mobileGetArticleDetailInfo" class="top.sj.mobile.web.GetArticleDetailInfoMobileAction">
+		<property name="mobileArticlesService" ref="mobileArticlesService"></property>
+	</bean>
+	
+	<!-- 【移动平台】获取博文标题的Action -->
+	<bean id="mobileGetArticleTitle" class="top.sj.mobile.web.GetArticleTitleMobileAction">
+		<property name="mobileArticlesService" ref="mobileArticlesService"></property>
+	</bean>
+	
+	<!-- 【移动平台】获取博文评论/回复信息的Action -->
+	<bean id="mobileGetArticleCOrRInfo" class="top.sj.mobile.web.GetArticleCommentsOrRepliesMobileAction">
+		<property name="commentsOrReplyService" ref="commentsOrReplyService"></property>
+	</bean>
+	
+	<!-- 【移动平台】发布评论/回复信息的Action -->
+	<bean id="mobilePublishCOrRInfo" class="top.sj.mobile.web.PublishCommentsOrRepliesMobileAction">
+		<property name="commentsOrReplyService" ref="commentsOrReplyService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<!-- 【移动平台】为评论/回复消息点赞的Action -->
+	<bean id="mobileDoPraise" class="top.sj.mobile.web.DoPraiseMobileAction">
+		<property name="commentsOrReplyService" ref="commentsOrReplyService"></property>
+	</bean>
+	
+	<!-- 【移动平台】测试调用的Action -->
+	<bean id="mobileInvokingTest" class="top.sj.mobile.web.TestInvokeMobileAction"></bean>
+</beans>

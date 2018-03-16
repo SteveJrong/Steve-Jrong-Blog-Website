@@ -1,0 +1,14 @@
+<!-- Spring应用上下文监听器 -->
+<listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+<!-- Spring项目根路径监听器 -->
+<listener>  
+	<listener-class>org.springframework.web.util.WebAppRootListener</listener-class>  
+</listener>
+
+<!-- Log4j日志监听器   -->
+<listener>      
+	<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>      
+</listener>

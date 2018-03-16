@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- Apache Shiro相关的配置文件 -->
+	
+	<!-- 配置Apache Shiro -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+	<bean id="shiroCacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"></bean>
+	<bean id="myRealm" class="top.sj.shiro.SJBlogShiro">
+		<property name="userService" ref="userService"></property>
+		<property name="mUsersService" ref="mUsersService"></property>
+	</bean>
+	<!-- 配置Apache Shiro的安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="myRealm"></property>
+		<property name="cacheManager" ref="shiroCacheManager"></property>
+	</bean>
+	<!-- 配置Shiro过滤器 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- Shiro的核心安全接口，这个属性是必须的 -->
+		<property name="securityManager" ref="securityManager"></property>
+		<!-- 要求登录时的链接(登录页面地址)，非必须的属性，默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
+		<property name="loginUrl" value="/login"></property>
+		<!-- 登录成功后要跳转的连接(本例中此属性用不到，因为登录成功后的处理逻辑在LoginController里硬编码) -->
+		<property name="successUrl" value="/home"></property>
+		<!-- 用户访问未对其授权的资源时，所显示的连接 -->
+		<property name="unauthorizedUrl" value="/403"></property>
+		<property name="filterChainDefinitions">
+			<value>
+				/manage = roles[admin]
+				/usermanage = roles[admin]
+				/cOrRmanage = roles[admin]
+				/cOrRUnverifymanage = roles[admin]
+				/atypemanage = roles[admin]
+				/lifemanage = roles[admin]
+				/mReIndexesManage = roles[admin]
+				/mRepManage = roles[admin]
+				/myresume = roles[interview]
+				/mine = authc
+			</value>
+		</property>
+	</bean>
+</beans>

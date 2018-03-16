@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+#line-chart {
+	height: 300px;
+	width: 800px;
+	margin: 0px auto;
+	margin-top: 1em;
+}
+
+.brand {
+	font-family: georgia, serif;
+}
+
+.brand .first {
+	color: #ccc;
+	font-style: italic;
+}
+
+.brand .second {
+	color: #fff;
+	font-weight: bold;
+}
+
+/* 2017/5/17 */
+.loading-pic{
+	margin:auto 50%;
+	display: none;
+}

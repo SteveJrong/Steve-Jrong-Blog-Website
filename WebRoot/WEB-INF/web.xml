@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app [   
+      <!ENTITY env SYSTEM "env.xml">
+      <!ENTITY web-filter SYSTEM "web-filter.xml">
+      <!ENTITY web-listener SYSTEM "web-listener.xml">
+      <!ENTITY web-servlet SYSTEM "web-servlet.xml">
+]>
+<web-app version="3.0" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>SJBlog</display-name>
+	
+	<!-- 将导入的env.xml的配置应用到web.xml主文件中 -->
+	&env;
+	
+	<!-- 将导入的web-filter.xml的配置应用到web.xml主文件中 -->
+	&web-filter;
+	
+	<!-- 将导入的web-listener.xml的配置应用到web.xml主文件中 -->
+	&web-listener;
+	
+	<!-- 将导入的web-servlet.xml的配置应用到web.xml主文件中 -->
+	&web-servlet;
+  	
+  	<context-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>classpath*:**/applicationContext.xml</param-value>
+	</context-param>
+  
+	<!-- 启动一个watchdog线程，每1800秒扫描一下log4j配置文件的变化   -->
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>      
+		<param-value>1800000</param-value>
+	</context-param>
+	
+	<!-- 创建一个项目根路径的键值对用于获取 -->
+	<context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>webapp.root</param-value>
+    </context-param>
+    
+	<!-- 配置403错误页面 -->
+	<error-page>
+		<error-code>403</error-code>
+		<location>/views/common/errorof403.jsp</location>
+	</error-page>
+	
+	<!-- 配置404错误页面 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/views/common/errorof404.jsp</location>
+	</error-page>
+	
+	<!-- 配置500错误页面 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/views/common/errorof500.jsp</location>
+	</error-page>
+	
+	<!-- 配置会话超时 -->
+	<session-config>
+		<session-timeout>1440</session-timeout>
+	</session-config>
+	
+	<welcome-file-list>
+		<welcome-file>views/front/redirect_by_home_page/redirect.html</welcome-file>
+	</welcome-file-list>
+</web-app>

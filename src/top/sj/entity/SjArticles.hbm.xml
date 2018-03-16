@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    SjArticles - 博文实体类映射文件
+-->
+<hibernate-mapping>
+    <class name="top.sj.entity.SjArticles" table="sj_articles">
+        <id name="AId" type="java.lang.Integer">
+            <column name="A_ID" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="sjUsers" class="top.sj.entity.SjUsers" fetch="select">
+            <column name="A_U_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sjArticletypes" class="top.sj.entity.SjArticletypes" fetch="select">
+            <column name="A_T_ID" not-null="true" />
+        </many-to-one>
+        <property name="AName" type="java.lang.String">
+            <column name="A_NAME" length="50" not-null="true" />
+        </property>
+        <property name="ACreatedate" type="java.sql.Timestamp">
+            <column name="A_CREATEDATE" length="19" not-null="true" />
+        </property>
+        <property name="AIpaddress" type="java.lang.String">
+            <column name="A_IPADDRESS" length="50" />
+        </property>
+        <property name="AModifydate" type="java.sql.Timestamp">
+            <column name="A_MODIFYDATE" length="19" />
+        </property>
+        <property name="AReadcount" type="java.lang.Long">
+            <column name="A_READCOUNT" not-null="true" />
+        </property>
+        <property name="AHoldtop" type="java.lang.Short">
+            <column name="A_HOLDTOP" not-null="true" />
+        </property>
+        <property name="AState" type="java.lang.String">
+            <column name="A_STATE" length="10" not-null="true" />
+        </property>
+        <property name="ATagkeyword" type="java.lang.String">
+            <column name="A_TAGKEYWORD" length="100" not-null="true" />
+        </property>
+        <property name="ABodycontents" type="java.lang.String">
+            <column name="A_BODYCONTENTS" not-null="true" />
+        </property>
+        <property name="AAttachfilespath" type="java.lang.String">
+            <column name="A_ATTACHFILESPATH" length="50" />
+        </property>
+        <property name="ABriefcontents" type="java.lang.String">
+            <column name="A_BRIEFCONTENTS" length="300" not-null="true" />
+        </property>
+        <property name="ABrowserinfo" type="java.lang.String">
+            <column name="A_BROWSERINFO" length="100">
+                <comment>博文发表时的浏览器信息</comment>
+            </column>
+        </property>
+        <property name="ASysteminfo" type="java.lang.String">
+            <column name="A_SYSTEMINFO" length="100">
+                <comment>博文发表时的操作系统信息</comment>
+            </column>
+        </property>
+        <set name="sjLeavemessageses" inverse="true">
+            <key>
+                <column name="M_A_ID" not-null="true" />
+            </key>
+            <one-to-many class="top.sj.entity.SjLeavemessages" />
+        </set>
+        <set name="sjFileAttachmentses" inverse="true" cascade="all">
+            <key>
+                <column name="FA_A_ID" not-null="true">
+                    <comment>文件附件所属的文章编号外键</comment>
+                </column>
+            </key>
+            <one-to-many class="top.sj.entity.SjFileAttachments" />
+        </set>
+    </class>
+</hibernate-mapping>

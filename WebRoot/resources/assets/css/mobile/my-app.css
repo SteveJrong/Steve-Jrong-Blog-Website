@@ -1,0 +1,44 @@
+.page-content,#pullRefresh {
+	padding-bottom: 0px;
+}
+
+.content-block-title {
+	margin-top: -15px;
+}
+
+.settings{
+	list-style-type: none;
+	line-height: 1em;
+}
+
+.settings li div div div span{
+	margin: 0em 1.5em;
+	letter-spacing: 0.20em;
+}
+
+#rightSlidePanel{
+	background:rgba(0,0,0,0.8);
+}
+
+.content-block{
+	color: #FFFFFF;
+}
+
+img {
+	max-width: 170px;
+	width: 170px;
+	width: expression(document.body.clientWidth > 170 ? "170px" : "auto");
+	max-height: 180px;
+	height: 180px;
+	height: expression(document.body.clientWidth > 180 ? "180px" : "auto");
+	overflow: hidden;
+}
+
+#content-block-etc{
+	margin-top:15px;
+	font-size: 0.85em;
+}
+
+.page-content{
+	height: 100%;
+}

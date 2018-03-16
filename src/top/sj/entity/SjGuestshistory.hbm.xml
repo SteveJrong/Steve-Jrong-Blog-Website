@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    SjGuestshistory - 访客历史记录实体类映射文件
+-->
+<hibernate-mapping>
+    <class name="top.sj.entity.SjGuestshistory" table="sj_guestshistory">
+        <id name="GId" type="java.lang.Integer">
+            <column name="G_ID" />
+            <generator class="increment" />
+        </id>
+        <property name="GIpaddress" type="java.lang.String">
+            <column name="G_IPADDRESS" length="50" />
+        </property>
+        <property name="GProvinceandcity" type="java.lang.String">
+            <column name="G_PROVINCEANDCITY" length="50" />
+        </property>
+        <property name="GFirstvisitordate" type="java.sql.Timestamp">
+            <column name="G_FIRSTVISITORDATE" length="19" not-null="true" />
+        </property>
+        <property name="GLastvisitordate" type="java.sql.Timestamp">
+            <column name="G_LASTVISITORDATE" length="19" not-null="true" />
+        </property>
+        <set name="sjGuestsdatehistorydetails" inverse="true" lazy="false" cascade="all">
+            <key>
+                <column name="GD_G_ID" not-null="true" />
+            </key>
+            <one-to-many class="top.sj.entity.SjGuestsdatehistorydetail" />
+        </set>
+    </class>
+</hibernate-mapping>

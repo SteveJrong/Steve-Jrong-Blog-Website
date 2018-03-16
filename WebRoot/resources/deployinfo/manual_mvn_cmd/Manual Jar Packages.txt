@@ -1,0 +1,23 @@
+cd D:\Users\Steve Jrong\Documents\sts-workspace\SJBlog
+
+mvn install:install-file -Dfile=G:\jars\hibernate-memcached-1.2.2.jar -DgroupId=com.googlecode -DartifactId=hibernate-memcached -Dversion=1.2.2 -Dpackaging=jar
+
+mvn install:install-file -Dfile=G:\jars\java_memcached-release_2.6.3.jar -DgroupId=com.danga -DartifactId=java-memcached -Dversion=2.6.3 -Dpackaging=jar
+
+mvn install:install-file -Dfile=G:\jars\jave-1.0.2.jar -DgroupId=it.sauronsoftware -DartifactId=jave -Dversion=1.0 -Dpackaging=jar
+
+mvn install:install-file -Dfile=G:\jars\jbosscache-core-3.1.0.GA.jar -DgroupId=org.jboss.cache -DartifactId=jbosscache-core -Dversion=3.1.0.GA -Dpackaging=jar
+
+mvn install:install-file -Dfile=G:\jars\jcaptcha-1.0-all.jar -DgroupId=com.octo.captcha -DartifactId=jcaptcha -Dversion=1.0-all -Dpackaging=jar
+
+mvn install:install-file -Dfile=G:\jars\json-lib-2.1-jdk15.jar -DgroupId=net.sf.json-lib -DartifactId=json-lib -Dversion=2.1 -Dpackaging=jar
+
+mvn install:install-file -Dfile=G:\jars\memcached-2.1.jar -DgroupId=net.spy -DartifactId=memcached -Dversion=2.1 -Dpackaging=jar
+
+mvn install:install-file -Dfile=G:\jars\org.springframework.web.servlet-3.1.1.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-web-servlet -Dversion=3.1.1.RELEASE -Dpackaging=jar
+
+mvn install:install-file -Dfile=G:\jars\quartz-1.5.2.jar -DgroupId=org.quartz-scheduler -DartifactId=quartz -Dversion=1.5.2 -Dpackaging=jar
+
+mvn install:install-file -Dfile=G:\jars\spy-2.4.jar -DgroupId=net.spy -DartifactId=spy -Dversion=2.4 -Dpackaging=jar
+
+mvn install:install-file -Dfile=G:\jars\spymemcached-2.8.10.jar -DgroupId=spy -DartifactId=spymemcached -Dversion=2.8.10 -Dpackaging=jar

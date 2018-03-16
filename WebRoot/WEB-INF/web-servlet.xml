@@ -1,0 +1,11 @@
+<!-- JCaptcha图片验证码 -->
+<servlet>
+   	<description>JCaptchaComponentServlet</description>
+   	<display-name>JCaptchaComponentServlet</display-name>
+   	<servlet-name>ValidateCodeServlet</servlet-name>
+   	<servlet-class>top.sj.web.ValidateCodeServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+   	<servlet-name>ValidateCodeServlet</servlet-name>
+   	<url-pattern>/servlet/ValidateCodeServlet</url-pattern>
+</servlet-mapping>

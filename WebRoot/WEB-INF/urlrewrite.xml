@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"  
+        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
+<urlrewrite>
+
+	<!-- ********************************************前台******************************************** -->
+	<rule>
+		<!-- 首页规则 -->
+		<from>^/home$</from>
+		<to type="forward">loadArticlesInfoAtIndexPage.action</to>
+	</rule>
+
+	<rule>
+		<!-- 文章详情页规则 -->
+		<from>^/detail_([0-9]+)$</from>
+		<to type="forward">loadArticleDetailAtSinglePage.action?aid=$1</to>
+	</rule>
+
+	<rule>
+		<!-- 按照时间查看文章规则 -->
+		<from>^/date_(\d+)_([0-9]{1,4}-[0-9]{1,2}+)$</from>
+		<to type="forward">loadArticlesInfoAccordingToLookingType.action?type=$1&amp;datePartion=$2</to>
+	</rule>
+
+	<rule>
+		<!-- 按类别查看文章规则 -->
+		<from>^/type_(\d+)_(\d+)$</from>
+		<to type="forward">loadArticlesInfoAccordingToLookingType.action?type=$1&amp;articleTypeNumber=$2</to>
+	</rule>
+
+	<rule>
+		<!-- 用户登录规则 -->
+		<from>^/login$</from>
+		<to type="forward">views/front/user_login/login.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 用户登录表单提交规则 -->
+		<from>^/dologin$</from>
+		<to type="forward">userLogin.action</to>
+	</rule>
+
+	<rule>
+		<!-- 用户注册规则 -->
+		<from>^/reg$</from>
+		<to type="forward">views/front/user_register/register.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 用户注册表单提交规则 -->
+		<from>^/doreg$</from>
+		<to type="forward">userRegister.action</to>
+	</rule>
+
+	<rule>
+		<!-- 查看更多文章（按钮链接）规则 -->
+		<from>^/more$</from>
+		<to type="forward">splitPageAtSinglePage.action</to>
+	</rule>
+
+	<rule>
+		<!-- 个人CSDN博客外链规则 -->
+		<from>^/mycsdn$</from>
+		<to type="redirect">http://blog.csdn.net/u010737252</to>
+	</rule>
+
+	<rule>
+		<!-- 个人Sina博客外链规则 -->
+		<from>^/mysina$</from>
+		<to type="redirect">http://blog.sina.com.cn/u/2984038683</to>
+	</rule>
+
+	<rule>
+		<!-- CSDN社区友情链接规则 -->
+		<from>^/csdn$</from>
+		<to type="redirect">http://blog.csdn.net/</to>
+	</rule>
+
+	<rule>
+		<!-- IBMDeveloperWork友情链接规则 -->
+		<from>^/ibm$</from>
+		<to type="redirect">https://www.ibm.com/developerworks/cn/java/</to>
+	</rule>
+
+	<rule>
+		<!-- ITeye友情链接规则 -->
+		<from>^/iteye$</from>
+		<to type="redirect">http://www.iteye.com/</to>
+	</rule>
+	
+	<rule>
+		<!-- Windows开发人员中心（Windows Dev Center）友情链接规则 -->
+		<from>^/uwp$</from>
+		<to type="redirect">https://dev.windows.com/zh-cn</to>
+	</rule>
+	
+	<rule>
+		<!-- 所有博文列表分页跳转规则 -->
+		<from>^/all_p(\d+)$</from>
+		<to type="forward">splitPageAtSinglePage.action?pageIndex=$1</to>
+	</rule>
+	
+	<rule>
+		<!-- 按类别查看文章页的分页链接规则 -->
+		<from>^/looktype_p(\d+)$</from>
+		<to type="forward">loadArticlesInfoAccordingToLookingType.action?pageIndex=$1</to>
+	</rule>
+	
+	<rule>
+		<!-- 用户退出账户的规则 -->
+		<from>^/exit$</from>
+		<to type="forward">logoutAccount.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 关于我页链接规则 -->
+		<from>^/aboutme$</from>
+		<to type="forward">views/front/about/about.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 后台管理系统链接规则 -->
+		<from>^/manage$</from>
+		<to type="forward">views/manage/article_manage/index.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- “大数据”页链接规则 -->
+		<from>^/bd$</from>
+		<to type="forward">views/front/big_data/index.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 载入“大数据”页ECharts插件Ajax地址规则 -->
+		<from>^/loadBD$</from>
+		<to type="forward">loadBigData.action</to>
+	</rule>
+	
+	<rule>
+		<!-- Google Chrome图标链接规则 -->
+		<from>^/chrome$</from>
+		<to type="forward">resources/assets/img/platform/browser/google-chrome-logo.png</to>
+	</rule>
+	
+	<rule>
+		<!-- Mozilla FireFox图标链接规则 -->
+		<from>^/firefox$</from>
+		<to type="forward">resources/assets/img/platform/browser/mozilla-firefox-logo.png</to>
+	</rule>
+	
+	<rule>
+		<!-- Internet Explorer和Edge图标链接规则 -->
+		<from>^/edge$</from>
+		<to type="forward">resources/assets/img/platform/browser/internet-explorer-logo.png</to>
+	</rule>
+	
+	<rule>
+		<!-- Safari图标链接规则 -->
+		<from>^/safari$</from>
+		<to type="forward">resources/assets/img/platform/browser/safari-logo.png</to>
+	</rule>
+	
+	<rule>
+		<!-- Linux图标链接规则 -->
+		<from>^/linux$</from>
+		<to type="forward">resources/assets/img/platform/pc/linux-logo.png</to>
+	</rule>
+	
+	<rule>
+		<!-- OS X图标链接规则 -->
+		<from>^/macosx$</from>
+		<to type="forward">resources/assets/img/platform/pc/mac-osx-logo.png</to>
+	</rule>
+	
+	<rule>
+		<!-- Windows图标链接规则 -->
+		<from>^/win32$</from>
+		<to type="forward">resources/assets/img/platform/pc/windows-logo.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 警告图标链接规则 -->
+		<from>^/warning$</from>
+		<to type="forward">resources/assets/img/warning-logo.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 微信二维码链接规则 -->
+		<from>^/mywechat$</from>
+		<to type="forward">resources/assets/img/wechat.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 大数据页火箭图标链接规则 -->
+		<from>^/rocket$</from>
+		<to type="forward">resources/assets/img/rocket.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 大数据页建筑图标链接规则 -->
+		<from>^/build$</from>
+		<to type="forward">resources/assets/img/build.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 大数据页胜利图标链接规则 -->
+		<from>^/bingo$</from>
+		<to type="forward">resources/assets/img/bingo.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 大数据页猴子图标链接规则 -->
+		<from>^/monkey$</from>
+		<to type="forward">resources/assets/img/monkey.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 版权页开源背景图片链接规则 -->
+		<from>^/opensource$</from>
+		<to type="forward">resources/assets/img/open-source.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 关于页背景图片链接规则 -->
+		<from>^/machine$</from>
+		<to type="forward">resources/assets/img/me.jpg</to>
+	</rule>
+	
+	<rule>
+		<!-- “玩生活”页规则 -->
+		<from>^/life$</from>
+		<to type="forward">/views/front/play_life/index.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- “玩生活”分页跳转规则 -->
+		<from>^/loadLife$</from>
+		<to type="forward">loadPlayLife.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 开源许可页跳转规则 -->
+		<from>^/opensourcelicense$</from>
+		<to type="forward">views/front/opensource_license/license.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 备案图标链接规则 -->
+		<from>^/miit$</from>
+		<to type="forward">resources/assets/img/beian.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 全文搜索页跳转链接规则 -->
+		<from>^/search$</from>
+		<to type="forward">fullTextSearch.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 全文搜索分页跳转规则 -->
+		<from>^/search_p(\d+)$</from>
+		<to type="forward">fullTextSearch.action?pageIndex=$1</to>
+	</rule>
+	
+	<rule>
+		<!-- Apache Lucene图标链接规则 -->
+		<from>^/lucene$</from>
+		<to type="forward">resources/assets/img/lucene_logo.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 飞碟图标链接规则 -->
+		<from>^/flydisk$</from>
+		<to type="forward">resources/assets/img/flydisk.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 帆船图标链接规则 -->
+		<from>^/sailing$</from>
+		<to type="forward">resources/assets/img/sailing.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 三螺栓图标链接规则 -->
+		<from>^/fasteners$</from>
+		<to type="forward">resources/assets/img/fasteners.png</to>
+	</rule>
+	
+	<rule>
+		<!-- UWP客户端UI主图链接规则 -->
+		<from>^/main_uwp$</from>
+		<to type="forward">resources/assets/img/client/main_screen_uwp.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 文章评论/回复链接规则 -->
+		<from>^/cOrR$</from>
+		<to type="forward">commentsOrReply.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 为评论/回复消息点赞的Ajax链接规则 -->
+		<from>^/praise$</from>
+		<to type="forward">doPraiseOfCOrR.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 文章详情下载文件附件链接规则 -->
+		<from>^/dFile_(\d+)$</from>
+		<to type="forward">downFile.action?fileId=$1</to>
+	</rule>
+	
+	<rule>
+		<!-- 移动客户端下载页链接规则 -->
+		<from>^/download$</from>
+		<to type="forward">views/front/mobile_client/index.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 个人中心页链接规则 -->
+		<from>^/mine$</from>
+		<to type="forward">loadPersonalCenterInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 个人中心获取个人信息Ajax链接规则 -->
+		<from>^/getmine$</from>
+		<to type="forward">loadUserInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 个人中心更新个人信息Ajax链接规则 -->
+		<from>^/updatemine$</from>
+		<to type="forward">updUserInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- Loading图标链接规则 -->
+		<from>^/loading$</from>
+		<to type="forward">resources/assets/img/loading.gif</to>
+	</rule>
+	
+	<rule>
+		<!-- 个人中心更新用户账户信息Ajax链接规则 -->
+		<from>^/updMineAcc$</from>
+		<to type="forward">updUserAccountInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 个人中心更新用户账户信息Ajax链接规则 -->
+		<from>^/uploadHeader$</from>
+		<to type="forward">uploadUserHeader.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 个人中心剪切并设置用户账户信息Ajax链接规则 -->
+		<from>^/cutHeader$</from>
+		<to type="forward">cutAndSetUserHeader.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 载入MixRadio模块数据信息Ajax链接规则 -->
+		<from>^/mixRadio$</from>
+		<to type="forward">loadMixRadioInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 加载MixRadio的Loading图标链接规则 -->
+		<from>^/loadingMixRadio$</from>
+		<to type="forward">resources/assets/img/loading-hdpi.gif</to>
+	</rule>
+	
+	<rule>
+		<!-- Hi-Res图标链接规则 -->
+		<from>^/hires$</from>
+		<to type="forward">resources/assets/img/hi-res.png</to>
+	</rule>
+	
+	<rule>
+		<!-- Huge Amounts Music图标链接规则 -->
+		<from>^/hugemusic$</from>
+		<to type="forward">resources/assets/img/huge-amounts-of-music.png</to>
+	</rule>
+	
+	<rule>
+		<!-- 个人简历Resume Index主页链接规则 -->
+		<from>^/myresume$</from>
+		<to type="forward">views/front/resume/index.jsp</to>
+	</rule>
+	<!-- ********************************************前台******************************************** -->
+	
+	
+	
+	
+	
+	
+	<!-- ********************************************后台******************************************** -->
+	<rule>
+		<!-- 博文信息管理主页Ajax请求全部博文信息链接 -->
+		<from>^/mAllArticleInfo$</from>
+		<to type="forward">getAllArticlesInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 博文信息管理主页新增博文信息链接 -->
+		<from>^/mNewArticleInfo$</from>
+		<to type="forward">loadAddNewArticlesInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 博文信息管理主页新增博文信息表单提交链接 -->
+		<from>^/mAdd$</from>
+		<to type="forward">addNewArticlesInfo.action</to>
+	</rule>
+	
+	
+	
+	<rule>
+		<!-- 博文类型信息管理主页Ajax请求全部博文类型信息链接 -->
+		<from>^/mAllArticleTypesInfo$</from>
+		<to type="forward">getAllArticleTypesInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 博文类型信息管理主页编辑博文类型信息链接 -->
+		<from>^/mUdArticleTypeInfo$</from>
+		<to type="forward">updateArticleTypesInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 博文类型信息管理主页删除博文类型信息链接 -->
+		<from>^/mDelArticleTypeInfo$</from>
+		<to type="forward">deleteArticleTypesInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 博文类型信息管理主页新增博文类型信息链接 -->
+		<from>^/mNewArticleTypeInfo$</from>
+		<to type="forward">addNewArticleTypesInfo.action</to>
+	</rule>
+	
+	
+	<rule>
+		<!-- 博文类型信息管理主页链接 -->
+		<from>^/atypemanage$</from>
+		<to type="forward">views/manage/article_type_manage/index.jsp</to>
+	</rule>
+	
+	
+	
+	<rule>
+		<!-- 用户信息管理主页链接 -->
+		<from>^/usermanage$</from>
+		<to type="forward">views/manage/user_manage/index.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 用户信息管理主页Ajax请求全部用户信息链接 -->
+		<from>^/mAllUsersInfo$</from>
+		<to type="forward">getAllUsersInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 用户信息管理主页删除用户信息链接 -->
+		<from>^/mDelUserInfo$</from>
+		<to type="forward">delUserInfo.action</to>
+	</rule>
+	
+	
+	
+	
+	<rule>
+		<!-- 生活段子管理主页链接 -->
+		<from>^/lifemanage$</from>
+		<to type="forward">views/manage/life_manage/index.jsp</to>
+	</rule>
+	
+	
+	<rule>
+		<!-- 生活段子管理主页的Ajax请求链接 -->
+		<from>^/mAllLifeInfo$</from>
+		<to type="forward">getLifeInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 获取一个生活段子详情信息的Ajax请求链接 -->
+		<from>^/mAllLifeDetailInfo$</from>
+		<to type="forward">getLifeDetailInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 添加一个生活段子信息的Ajax请求链接 -->
+		<from>^/mAddLifeInfo$</from>
+		<to type="forward">addLifeInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 修改生活段子信息的Ajax请求链接 -->
+		<from>^/mUdLifeInfo$</from>
+		<to type="forward">updateLifeInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 删除生活段子信息的Ajax请求链接 -->
+		<from>^/mDelLifeInfo$</from>
+		<to type="forward">delLifeInfo.action</to>
+	</rule>
+	
+	
+	
+	<rule>
+		<!--  留言信息审核主页链接 -->
+		<from>^/cOrRUnverifymanage$</from>
+		<to type="forward">views/manage/comments_or_reply_manage/unverify_manage/index.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 评论/回复消息审核页的Ajax请求链接 -->
+		<from>^/mUnverifycOrR$</from>
+		<to type="forward">loadUnverifyCOrRInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 审核未审核的评论/回复消息的Ajax请求链接 -->
+		<from>^/mVerifycOrR$</from>
+		<to type="forward">verifyCOrRInfo.action</to>
+	</rule>
+	
+	
+	
+	<rule>
+		<!-- 评论/回复消息管理主页链接 -->
+		<from>^/cOrRmanage$</from>
+		<to type="forward">views/manage/comments_or_reply_manage/c_or_r_manage/index.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 评论/回复消息管理页Ajax请求链接 -->
+		<from>^/mCOrRInfo$</from>
+		<to type="forward">loadCOrRInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 删除评论/回复消息的Ajax请求链接 -->
+		<from>^/mDelCOrR$</from>
+		<to type="forward">delCOrRInfo.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 系统设置中全文索引主页链接 -->
+		<from>^/mReIndexesManage$</from>
+		<to type="forward">views/manage/full_text_indexes_manage/index.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 系统设置中全文索引Ajax请求链接 -->
+		<from>^/mReIndexes$</from>
+		<to type="forward">manualBldIndexes.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 系统设置中网站维护状态管理主页链接 -->
+		<from>^/mRepManage$</from>
+		<to type="forward">views/manage/repairing_manage/index.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 系统设置中网站维护状态Ajax请求链接 -->
+		<from>^/mRepSte$</from>
+		<to type="forward">setRepairingState.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 获取网站维护状态信息的Ajax请求链接 -->
+		<from>^/mGetRepSte$</from>
+		<to type="forward">getRepairingState.action</to>
+	</rule>
+	
+	<rule>
+		<!-- 博文信息管理中编辑博文信息主页链接 -->
+		<from>^/mEditArticleManage_(\d+)$</from>
+		<to type="forward">loadArticleDetailInfo.action?articleId=$1</to>
+	</rule>
+	
+	<rule>
+		<!-- 博文类型信息管理主页编辑博文类型信息链接 -->
+		<from>^/mUdArticleDetailInfo$</from>
+		<to type="forward">updateArticleDetailInfo.action</to>
+	</rule>
+	
+	<!-- ********************************************后台******************************************** -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- ********************************************通用******************************************** -->
+	<rule>
+		<!-- 403页面链接 -->
+		<from>^/403$</from>
+		<to type="forward">views/common/errorof403.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 403页面链接 -->
+		<from>^/404$</from>
+		<to type="forward">views/common/errorof404.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 403页面链接 -->
+		<from>^/500$</from>
+		<to type="forward">views/common/errorof500.jsp</to>
+	</rule>
+	
+	<rule>
+		<!-- 网站建设中页面链接 -->
+		<from>^/dev$</from>
+		<to type="forward">views/common/developing.jsp</to>
+	</rule>
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- ********************************************通用******************************************** -->
+	<!-- <rule> from表示显示出来的地址 <from>^/world/(.*)$</from> to表示映射到的实际地址 $1表示重写的参数 
+		<to>/world.jsp?tid=$1</to> </rule> <rule> from表示显示出来的地址 <from>^/hello/([a-z]+)_([0-9]+)$</from> 
+		to表示映射到的实际地址 $1和$2表示重写的参数。多个参数使用正则表达式转义过的&符号分割 <to>/hello.jsp?name=$1&amp;pwd=$2</to> 
+		</rule> -->
+</urlrewrite> 

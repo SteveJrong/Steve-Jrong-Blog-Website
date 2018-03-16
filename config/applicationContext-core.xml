@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+							http://www.springframework.org/schema/tx
+							http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+							http://www.springframework.org/schema/aop
+							http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+							http://www.springframework.org/schema/context   
+    						http://www.springframework.org/schema/context/spring-context.xsd
+							">
+	
+	<!-- 配置Placeholder配置文件路径 -->
+	<!-- 		<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+	<!-- 			<property name="locations"> -->
+	<!-- 				<list> -->
+	<!-- 					<value>classpath:jdbc.properties</value> -->
+	<!-- 					<value>classpath:hibernate.properties</value> -->
+	<!-- 					<value>classpath:memcache.properties</value> -->
+	<!-- 					<value>classpath:freemarker.properties</value> -->
+	<!-- 					<value>classpath:job.properties</value> -->
+	<!-- 					<value>classpath:mail.properties</value> -->
+	<!-- 				<value>classpath:/properties/${spring.profiles.active}/dev.properties</value> -->
+	<!-- 			</list> -->
+	<!-- 		</property> -->
+	<!-- 	</bean> -->
+	
+	<!-- 配置自定义的SpringContextHolder -->
+	<bean id="springContextHolder" class="top.sj.common.util.SpringContextHolder" />
+	
+	<!-- 定义事务管理器 -->
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 定义事务规则 -->
+	<tx:advice id="txAdv" transaction-manager="txManager">
+		<tx:attributes>
+			<!-- 适用于添加的事务规则 -->
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="addNew*" propagation="REQUIRED" />
+			<tx:method name="do*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+
+			<!-- 适用于删除的事务规则 -->
+			<tx:method name="del*" propagation="REQUIRED" />
+
+			<!-- 适用于更新的事务规则 -->
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="verify*" propagation="REQUIRED" />
+
+			<!-- 适用于查询的事务规则 -->
+			<tx:method name="get*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置DataSource数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<!-- 配置Session工厂 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.memcached.servers">${memcache.server}</prop>
+				<prop key="hibernate.cache.region_prefix">${hibernate.cache.region_prefix}</prop>
+				<prop key="hibernate.cache.use_structured_entries">${hibernate.cache.use_structured_entries}</prop>
+				<prop key="hibernate.memcached.operationTimeout">${hibernate.memcached.operationTimeout}</prop>
+				<prop key="hibernate.memcached.cacheTimeSeconds">${hibernate.memcached.cacheTimeSeconds}</prop>
+				<prop key="hibernate.connection.release_mode">${hibernate.connection.release_mode}</prop>
+				<prop key="hibernate.default_catalog">${hibernate.default_catalog}</prop>
+			</props>			
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>top/sj/entity/SjArticletypes.hbm.xml</value>
+				<value>top/sj/entity/SjLife.hbm.xml</value>
+				<value>top/sj/entity/SjLeavemessages.hbm.xml</value>
+				<value>top/sj/entity/SjUsers.hbm.xml</value>
+				<value>top/sj/entity/SjArticles.hbm.xml</value>
+				<value>top/sj/entity/SjGuestshistory.hbm.xml</value>
+				<value>top/sj/entity/SjGuestsdatehistorydetail.hbm.xml</value>
+				<value>top/sj/entity/SjFileAttachments.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 配置Java邮件发送 -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>${mail.host}</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+				<prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+				<prop key="mail.smtp.socketFactory.class">${mail.smtp.socketFactory.class}</prop>
+				<prop key="mail.smtp.port">${mail.smtp.port}</prop>
+				<prop key="mail.smtp.socketFactory.port">${mail.smtp.socketFactory.port}</prop>
+			</props>
+		</property>
+		<property name="username">
+			<value>${mail.username}</value>
+		</property>
+		<property name="password">
+			<value>${mail.password}</value>
+		</property>
+	</bean>
+</beans>

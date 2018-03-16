@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+							
+	<!-- 移动平台Service相关的配置文件 -->
+	
+	<!-- 【移动平台】用户Service -->
+	<bean id="mobileUserService" class="top.sj.mobile.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<!-- 【移动平台】博文Service -->
+	<bean id="mobileArticlesService" class="top.sj.mobile.service.impl.ArticlesServiceImpl">
+		<property name="mobileArticlesDao" ref="mobileArticlesDao"></property>
+		<property name="articlesDao" ref="articlesDao"></property>
+	</bean>
+</beans>

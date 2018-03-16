@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    SjLeavemessages - 留言实体类映射文件
+-->
+<hibernate-mapping>
+    <class name="top.sj.entity.SjLeavemessages" table="sj_leavemessages">
+        <id name="MId" type="java.lang.Integer">
+            <column name="M_ID" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="sjArticles" class="top.sj.entity.SjArticles" fetch="select">
+            <column name="M_A_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sjUsersByMReplyId" class="top.sj.entity.SjUsers" fetch="select">
+            <column name="M_REPLY_ID" />
+        </many-to-one>
+        <many-to-one name="sjUsersByMUId" class="top.sj.entity.SjUsers" fetch="select">
+            <column name="M_U_ID" not-null="true" />
+        </many-to-one>
+        <property name="MComments" type="java.lang.String">
+            <column name="M_COMMENTS" length="200" not-null="true" />
+        </property>
+        <property name="MPublishdate" type="java.sql.Timestamp">
+            <column name="M_PUBLISHDATE" length="19" not-null="true" />
+        </property>
+        <property name="MMessageType" type="java.lang.Integer">
+            <column name="M_MESSAGE_TYPE" not-null="true" />
+        </property>
+        <property name="MVerifystate" type="java.lang.Integer">
+            <column name="M_VERIFYSTATE" not-null="true" />
+        </property>
+        <property name="MIpaddress" type="java.lang.String">
+            <column name="M_IPADDRESS" length="10" />
+        </property>
+        <property name="MDeviceinfo" type="java.lang.String">
+            <column name="M_DEVICEINFO" length="100" />
+        </property>
+        <property name="MSysteminfo" type="java.lang.String">
+            <column name="M_SYSTEMINFO" length="100" />
+        </property>
+        <property name="MPraisecount" type="java.lang.Integer">
+            <column name="M_PRAISE_COUNT" />
+        </property>
+    </class>
+</hibernate-mapping>

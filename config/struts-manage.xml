@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 后台管理系统的struts配置文件 -->
+	<!-- 改变struts2默认为2M的上传文件大小限制 -->
+	<constant name="struts.multipart.maxSize" value="1024000000"/>
+	
+	<package name="json_default" namespace="/" extends="json-default">
+	
+		<!-- 【文章信息管理】获取所有文章信息的Action -->
+		<action name="getAllArticlesInfo" class="getAllArticlesInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【文章信息管理】删除博文信息的Action -->
+		<action name="delArticleInfo" class="delArticleInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【文章类型信息管理】获取所有博文类型信息的Action -->
+		<action name="getAllArticleTypesInfo" class="getAllArticleTypesInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【文章类型信息管理】更新博文类型信息的Action -->
+		<action name="updateArticleTypesInfo" class="updateArticleTypesInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【文章类型信息管理】删除博文类型信息的Action -->
+		<action name="deleteArticleTypesInfo" class="deleteArticleTypesInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【文章类型信息管理】新增博文类型信息的Action -->
+		<action name="addNewArticleTypesInfo" class="addNewArticleTypesInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		
+		<!-- 【用户信息管理】载入用户信息管理页的用户信息的Action -->
+		<action name="getAllUsersInfo" class="getAllUsersInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【用户信息管理】删除用户信息的Action -->
+		<action name="delUserInfo" class="delUserInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		
+		
+		<!-- 【生活段子管理】载入生活段子管理页的Action -->
+		<action name="getLifeInfo" class="getLifeInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【生活段子管理】获取一个生活段子详情信息的Action -->
+		<action name="getLifeDetailInfo" class="getLifeDetailInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【生活段子管理】添加一个生活段子信息的Action -->
+		<action name="addLifeInfo" class="addLifeInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【生活段子管理】修改生活段子信息的Action -->
+		<action name="updateLifeInfo" class="updateLifeInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【生活段子管理】删除生活段子信息的Action -->
+		<action name="delLifeInfo" class="delLifeInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【评论/回复消息审核】载入留言信息审核页的Action -->
+		<action name="loadUnverifyCOrRInfo" class="loadUnverifyCOrRInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【评论/回复消息审核】审核未审核的评论/回复消息的Action -->
+		<action name="verifyCOrRInfo" class="verifyCOrRInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【评论/回复消息管理】载入所有评论/回复消息管理页的Action -->
+		<action name="loadCOrRInfo" class="loadCOrRInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【评论/回复消息管理】删除一个评论/回复消息的Action -->
+		<action name="delCOrRInfo" class="delCOrRInfo">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【系统设置】手动建立索引的Action -->
+		<action name="manualBldIndexes" class="manualBldIndexes">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【系统设置】获取网站维护状态的Action -->
+		<action name="getRepairingState" class="getRepairingState">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+		
+		<!-- 【系统设置】设置网站维护状态的Action -->
+		<action name="setRepairingState" class="setRepairingState">
+			<result name="success" type="json">
+				<param name="root">jsonDatas</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="struts-manage-default" namespace="/" extends="struts-default">
+		
+		<!-- 载入新增博文信息页相关的Action -->
+		<action name="loadAddNewArticlesInfo" class="loadAddNewArticlesInfo">
+			<result name="success">/views/manage/article_manage/add.jsp</result>
+		</action>
+		
+		<!-- 新增博文信息相关的Action -->
+		<action name="addNewArticlesInfo" class="addNewArticlesInfo">
+			<result name="success">/views/manage/article_manage/index.jsp</result>
+		</action>
+		
+		<!-- 【用户信息管理】上传博文图片的Action -->
+		<action name="uploadPics" class="uploadPics"></action>
+		
+		<!-- 【用户信息管理】上传博文附件的Action -->
+		<action name="uploadFiles" class="uploadFiles">
+			<!-- <result name="savePath">/upload/files</result> -->
+			<result name="success">/views/manage/article_manage/add.jsp</result>
+		</action>
+		
+		<!-- 载入文章信息的Action -->
+		<action name="loadArticleDetailInfo" class="loadArticleDetailInfo">
+			<result name="success">/views/manage/article_manage/edit.jsp</result>
+		</action>
+		
+		<!-- 【博文信息管理】更新文章信息的Action -->
+		<action name="updateArticleDetailInfo" class="updateArticleDetailInfo">
+			<result name="success">/views/manage/article_manage/index.jsp</result>
+		</action>
+	</package>
+</struts>    

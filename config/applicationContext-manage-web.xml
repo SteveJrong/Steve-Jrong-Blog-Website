@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+		
+	<!-- 后台管理系统Web相关的配置文件 -->
+
+	<!-- 载入博文信息管理页的文章信息的Action -->
+	<bean id="getAllArticlesInfo" class="top.sj.manage.web.LoadAllArticlesInfoAction">
+		<property name="mArticlesService" ref="mArticlesService"></property>
+	</bean>
+	
+	<!-- 载入新增博文信息页相关的Action -->
+	<bean id="loadAddNewArticlesInfo" class="top.sj.manage.web.LoadAddNewArticleInfoAction">
+		<property name="mArticlesService" ref="mArticlesService"></property>
+		<property name="mUsersService" ref="mUsersService"></property>
+	</bean>
+	
+	<!-- 新增博文信息相关的Action -->
+	<bean id="addNewArticlesInfo" class="top.sj.manage.web.AddNewArticleInfoAction">
+		<property name="mArticlesService" ref="mArticlesService"></property>
+		<property name="mArticleTypesService" ref="mArticleTypesService"></property>
+		<property name="mUsersService" ref="mUsersService"></property>
+	</bean>
+	
+	<!-- 删除博文信息相关的Action -->
+	<bean id="delArticleInfo" class="top.sj.manage.web.DeleteArticleInfoAction">
+		<property name="mArticlesService" ref="mArticlesService"></property>
+	</bean>
+	
+	
+	<!-- 载入博文类型信息管理页的文章信息的Action -->
+	<bean id="getAllArticleTypesInfo" class="top.sj.manage.web.LoadAllArticleTypesInfoAction">
+		<property name="mArticleTypesService" ref="mArticleTypesService"></property>
+	</bean>
+	
+	<!-- 更新博文类型信息相关的Action -->
+	<bean id="updateArticleTypesInfo" class="top.sj.manage.web.UpdateArticleTypeAction">
+		<property name="mArticleTypesService" ref="mArticleTypesService"></property>
+	</bean>
+	
+	<!-- 删除博文类型信息相关的Action -->
+	<bean id="deleteArticleTypesInfo" class="top.sj.manage.web.DeleteArticleTypeAction">
+		<property name="mArticleTypesService" ref="mArticleTypesService"></property>
+	</bean>
+	
+	<!-- 新增博文类型信息相关的Action -->
+	<bean id="addNewArticleTypesInfo" class="top.sj.manage.web.AddNewArticleTypeInfoAction">
+		<property name="mArticleTypesService" ref="mArticleTypesService"></property>
+	</bean>
+	
+	
+	<!-- 载入用户信息管理页的用户信息的Action -->
+	<bean id="getAllUsersInfo" class="top.sj.manage.web.LoadAllUsersInfoAction">
+		<property name="mUsersService" ref="mUsersService"></property>
+	</bean>
+	
+	<!-- 删除用户信息相关的Action -->
+	<bean id="delUserInfo" class="top.sj.manage.web.DeleteUserInfoAction">
+		<property name="mUsersService" ref="mUsersService"></property>
+	</bean>
+	
+	<!-- 上传博文图片的Action -->
+	<bean id="uploadPics" class="top.sj.manage.web.UploadPicturesAction"></bean>
+	
+	<!-- 载入生活段子管理页的Action -->
+	<bean id="getLifeInfo" class="top.sj.manage.web.LoadAllLifeInfoAction">
+		<property name="mLifeService" ref="mLifeService"></property>
+	</bean>
+	
+	<!-- 获取一个生活段子详情信息的Action -->
+	<bean id="getLifeDetailInfo" class="top.sj.manage.web.GetLifeInfoDetailAction">
+		<property name="mLifeService" ref="mLifeService"></property>
+	</bean>
+	
+	<!-- 添加一个生活段子信息的Action -->
+	<bean id="addLifeInfo" class="top.sj.manage.web.AddNewLifeInfoAction">
+		<property name="mLifeService" ref="mLifeService"></property>
+	</bean>
+	
+	<!-- 修改生活段子信息的Action -->
+	<bean id="updateLifeInfo" class="top.sj.manage.web.UpdateLifeInfoAction">
+		<property name="mLifeService" ref="mLifeService"></property>
+	</bean>
+	
+	<!-- 删除生活段子信息的Action -->
+	<bean id="delLifeInfo" class="top.sj.manage.web.DeleteLifeInfoAction">
+		<property name="mLifeService" ref="mLifeService"></property>
+	</bean>
+	
+	<!-- 载入未审核的评论/回复消息审核页的Action -->
+	<bean id="loadUnverifyCOrRInfo" class="top.sj.manage.web.LoadAllUnVerifyCommentsOrReplyInfoAction">
+		<property name="mCommentsOrReplyService" ref="mCommentsOrReplyService"></property>
+	</bean>
+	
+	<!-- 审核未审核的评论/回复消息的Action -->
+	<bean id="verifyCOrRInfo" class="top.sj.manage.web.VerifyCommentsOrReplyInfoAction">
+		<property name="mCommentsOrReplyService" ref="mCommentsOrReplyService"></property>
+	</bean>
+	
+	<!-- 载入所有评论/回复消息管理页的Action -->
+	<bean id="loadCOrRInfo" class="top.sj.manage.web.LoadAllCommentsOrReplyInfoAction">
+		<property name="mCommentsOrReplyService" ref="mCommentsOrReplyService"></property>
+	</bean>
+	
+	<!-- 删除一个评论/回复消息的Action -->
+	<bean id="delCOrRInfo" class="top.sj.manage.web.DeleteCommentsOrReplyInfoAction">
+		<property name="mCommentsOrReplyService" ref="mCommentsOrReplyService"></property>
+	</bean>
+	
+	<!-- 手动建立索引的Action -->
+	<bean id="manualBldIndexes" class="top.sj.manage.web.ManualRebuildLuceneIndexesAction">
+		<property name="articlesService" ref="articlesService"></property>
+	</bean>
+	
+	<!-- 获取网站维护状态的Action -->
+	<bean id="getRepairingState" class="top.sj.manage.web.GetRepiringStateAction"></bean>
+	
+	<!-- 设置网站维护状态的Action -->
+	<bean id="setRepairingState" class="top.sj.manage.web.RepairingPageAction"></bean>
+	
+	<!-- 上传博文附件的Action -->
+	<bean id="uploadFiles" class="top.sj.manage.web.UploadFilesAction"></bean>
+	
+	<!-- 载入文章信息的Action -->
+	<bean id="loadArticleDetailInfo" class="top.sj.manage.web.LoadArticleDetailInfoAction">
+		<property name="mArticlesService" ref="mArticlesService"></property>
+		<property name="mUsersService" ref="mUsersService"></property>
+	</bean>
+	
+	<!-- 更新文章信息的Action -->
+	<bean id="updateArticleDetailInfo" class="top.sj.manage.web.UpdateArticleDetailInfoAction">
+		<property name="mArticlesService" ref="mArticlesService"></property>
+		<property name="mArticleTypesService" ref="mArticleTypesService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+</beans>

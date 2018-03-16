@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+		
+	<!-- 后台管理系统Service相关的配置文件 -->
+	
+	<!-- 文章Service -->
+	<bean id="mArticlesService" class="top.sj.manage.service.impl.ArticlesServiceImpl">
+		<property name="mArticlesDao" ref="mArticlesDao"></property>
+	</bean>
+	
+	<!-- 用户Service -->
+	<bean id="mUsersService" class="top.sj.manage.service.impl.UsersServiceImpl">
+		<property name="mUsersDao" ref="mUsersDao"></property>
+	</bean>
+	
+	<!-- 文章类型Service -->
+	<bean id="mArticleTypesService" class="top.sj.manage.service.impl.ArticleTypesServiceImpl">
+		<property name="mArticleTypesDao" ref="mArticleTypesDao"></property>
+	</bean>
+	
+	<!-- 全文索引Service -->
+	<bean id="mFullTextIndexesService" class="top.sj.manage.service.impl.IndexesServiceImpl"></bean>
+	
+	<!-- 电子邮件Service -->
+	<bean id="mAutoSendEmailService" class="top.sj.manage.service.impl.EmailServiceImpl">
+		<property name="javaMailSender" ref="javaMailSender"></property>
+		<property name="freeMarkerConfigurer" ref="freeMarker"></property>
+	</bean>
+	
+	<!-- 生活段子Service -->
+	<bean id="mLifeService" class="top.sj.manage.service.impl.LifeServiceImpl">
+		<property name="mLifeDao" ref="mLifeDao"></property>
+	</bean>
+	
+	<!-- 评论/回复Service -->
+	<bean id="mCommentsOrReplyService" class="top.sj.manage.service.impl.CommentsOrReplyServiceImpl">
+		<property name="mCommentsOrReplyDao" ref="mCommentsOrReplyDao"></property>
+	</bean>
+	
+	<!-- 文件附件Service -->
+	<bean id="mFileAttachmentsService" class="top.sj.manage.service.impl.FileAttachmentsServiceImpl">
+		<property name="mFileAttachmentsDao" ref="mFileAttachmentsDao"></property>
+	</bean>
+</beans>

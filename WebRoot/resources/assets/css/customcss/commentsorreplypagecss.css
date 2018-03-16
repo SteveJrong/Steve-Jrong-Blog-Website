@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+.search_area {
+	margin: 0em auto;
+	padding: 1em 2em;
+	overflow: hidden;
+}
+
+.search_area ul li {
+	margin: 0em 0.5em;
+	float: left;
+	list-style-type: none;
+}
+
+.search_area ul li:nth-child(4) {
+	display: block;
+	float: right;
+	margin-right: 4.89em;
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+							
+	<!-- Service相关的配置文件 -->
+	
+	<!-- 文章Service -->
+	<bean id="articlesService" class="top.sj.service.impl.ArticlesServiceImpl">
+		<property name="articlesDao" ref="articlesDao"></property>
+	</bean>
+	
+	<!-- 文章类型Service -->
+	<bean id="articleTypesService" class="top.sj.service.impl.ArticleTypesServiceImpl">
+		<property name="articleTypesDao" ref="articleTypesDao"></property>
+	</bean>
+	
+	<!-- 用户Service -->
+	<bean id="userService" class="top.sj.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<!-- 访客历史记录Service -->
+	<bean id="guestsHistoryService" class="top.sj.service.impl.GuestsHistoryServiceImpl">
+		<property name="guestsHistoryDao" ref="guestsHistoryDao"></property>
+	</bean>
+	
+	<!-- 大数据Service -->
+	<bean id="bigDataService" class="top.sj.service.impl.BigDataServiceImpl">
+		<property name="bigDataDao" ref="bigDataDao"></property>
+	</bean>
+	
+	<!-- 玩生活Service -->
+	<bean id="lifeService" class="top.sj.service.impl.LifeServiceImpl">
+		<property name="lifeDao" ref="lifeDao"></property>
+	</bean>
+	
+	<!-- 评论/回复Service -->
+	<bean id="commentsOrReplyService" class="top.sj.service.impl.CommentsOrReplyServiceImpl">
+		<property name="commentsOrReplyDao" ref="commentsOrReplyDao"></property>
+		<property name="articlesDao" ref="articlesDao"></property>
+		<property name="mCommentsOrReplyDao" ref="mCommentsOrReplyDao"></property>
+	</bean>
+	
+	<!-- 文件附件Service -->
+	<bean id="fileAttachmentsService" class="top.sj.service.impl.FileAttachmentsServiceImpl">
+		<property name="fileAttachmentsDao" ref="fileAttachmentsDao"></property>
+	</bean>
+</beans>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- Dao相关的配置文件 -->
+	<!-- 文章Dao -->
+	<bean id="articlesDao" class="top.sj.dao.impl.ArticlesDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 文章类型Dao -->
+	<bean id="articleTypesDao" class="top.sj.dao.impl.ArticleTypesDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 用户Dao -->
+	<bean id="userDao" class="top.sj.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 访客历史记录Dao -->
+	<bean id="guestsHistoryDao" class="top.sj.dao.impl.GuestsHistoryDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 大数据Dao -->
+	<bean id="bigDataDao" class="top.sj.dao.impl.BigDataDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 玩生活Dao -->
+	<bean id="lifeDao" class="top.sj.dao.impl.LifeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 评论/回复Dao -->
+	<bean id="commentsOrReplyDao" class="top.sj.dao.impl.CommentsOrReplyDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 文件附件Dao -->
+	<bean id="fileAttachmentsDao" class="top.sj.dao.impl.FileAttachmentsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+</beans>

@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+.about {
+	list-style-type: none;
+}
+
+.about ol li {
+	list-style-type: circle;
+}
+
+.about ol li ol li {
+	list-style-type: none;
+}
+
+.copyright .line{
+	margin: auto 0.5em;
+}
+
+.about b li{
+	margin-top:0.75em;
+}

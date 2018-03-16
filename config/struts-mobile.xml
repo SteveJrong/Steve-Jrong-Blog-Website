@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 移动平台的struts配置文件 -->
+	
+	<package name="json_mobile_default" namespace="/" extends="json-default">
+		<!-- 【移动平台】用户登录的Action -->
+		<action name="mobileUserLogin" class="mobileUserLogin">
+			<result name="success" type="json">
+				<param name="root">responseResult</param>
+			</result>
+		</action>
+		
+		<!-- 【移动平台】用户注册的Action -->
+		<action name="mobileUserRegister" class="mobileUserRegister">
+			<result name="success" type="json">
+				<param name="root">responseResult</param>
+			</result>
+		</action>
+		
+		<!-- 【移动平台】载入全部博文信息的Action -->
+		<action name="mobileLoadAllArticlesInfo" class="mobileLoadAllArticlesInfo">
+			<result name="success" type="json">
+				<param name="root">responseResult</param>
+			</result>
+		</action>
+		
+		<!-- 【移动平台】获取博文详情信息的Action -->
+		<!-- <action name="mobileGetArticleDetailInfo" class="mobileGetArticleDetailInfo">
+			<result name="success" type="json">
+				<param name="root">responseResult</param>
+			</result>
+		</action> -->
+		
+		<!-- 【移动平台】获取博文标题的Action -->
+		<action name="mobileGetArticleTitle" class="mobileGetArticleTitle">
+			<result name="success" type="json">
+				<param name="root">responseResult</param>
+			</result>
+		</action>
+		
+		<!-- 【移动平台】获取博文标题的Action -->
+		<action name="mobileGetArticleCOrRInfo" class="mobileGetArticleCOrRInfo">
+			<result name="success" type="json">
+				<param name="root">responseResult</param>
+			</result>
+		</action>
+		
+		<!-- 【移动平台】发布评论/回复信息的Action -->
+		<action name="mobilePublishCOrRInfo" class="mobilePublishCOrRInfo">
+			<result name="success" type="json">
+				<param name="root">responseResult</param>
+			</result>
+		</action>
+		
+		<!-- 【移动平台】为评论/回复消息点赞的Action -->
+		<action name="mobileDoPraise" class="mobileDoPraise">
+			<result name="success" type="json">
+				<param name="root">responseResult</param>
+			</result>
+		</action>
+		
+		<!-- 【移动平台】测试调用的Action -->
+		<action name="mobileInvokingTest" class="mobileInvokingTest">
+			<result name="success" type="json">
+				<param name="root">responseResult</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="struts_mobile_default" namespace="/" extends="struts-default">
+		<!-- 博文详情页相关的Action -->
+		<action name="mobileGetArticleDetailInfo" class="mobileGetArticleDetailInfo">
+			<result name="articleDetail">/views/mobile/article_detail/detail.jsp</result>
+		</action>
+	</package>
+</struts>    

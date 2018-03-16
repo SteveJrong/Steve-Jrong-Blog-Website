@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+		 					http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+		 
+	<!-- 后台管理系统Dao相关的配置文件 -->
+	
+	<!-- 文章Dao -->
+	<bean id="mArticlesDao" class="top.sj.manage.dao.impl.ArticlesDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 用户Dao -->
+	<bean id="mUsersDao" class="top.sj.manage.dao.impl.UsersDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 文章类型Dao -->
+	<bean id="mArticleTypesDao" class="top.sj.manage.dao.impl.ArticleTypesDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 生活段子Dao -->
+	<bean id="mLifeDao" class="top.sj.manage.dao.impl.LifeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 评论/回复Dao -->
+	<bean id="mCommentsOrReplyDao" class="top.sj.manage.dao.impl.CommentsOrReplyDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 文件附件Dao -->
+	<bean id="mFileAttachmentsDao" class="top.sj.manage.dao.impl.FileAttachmentsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+</beans>

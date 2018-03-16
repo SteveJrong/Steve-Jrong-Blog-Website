@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    SjArticletypes - 博文类型实体类映射文件
+-->
+<hibernate-mapping>
+    <class name="top.sj.entity.SjArticletypes" table="sj_articletypes">
+        <id name="TId" type="java.lang.Integer">
+            <column name="T_ID" />
+            <generator class="increment" />
+        </id>
+        <property name="TName" type="java.lang.String">
+            <column name="T_NAME" length="50" not-null="true" />
+        </property>
+        <set name="sjArticleses" inverse="true">
+            <key>
+                <column name="A_T_ID" not-null="true" />
+            </key>
+            <one-to-many class="top.sj.entity.SjArticles" />
+        </set>
+    </class>
+</hibernate-mapping>

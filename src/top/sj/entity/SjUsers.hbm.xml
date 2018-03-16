@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    SjUsers - 用户实体类映射文件
+-->
+<hibernate-mapping>
+    <class name="top.sj.entity.SjUsers" table="sj_users">
+        <id name="UId" type="java.lang.Integer">
+            <column name="U_ID" />
+            <generator class="increment" />
+        </id>
+        <property name="UNickname" type="java.lang.String">
+            <column name="U_NICKNAME" length="50" not-null="true" />
+        </property>
+        <property name="UGender" type="java.lang.String">
+            <column name="U_GENDER" length="2" />
+        </property>
+        <property name="URole" type="java.lang.String">
+            <column name="U_ROLE" length="10" not-null="true" />
+        </property>
+        <property name="UAge" type="java.lang.Integer">
+            <column name="U_AGE" />
+        </property>
+        <property name="UPwd" type="java.lang.String">
+            <column name="U_PWD" length="500" not-null="true" />
+        </property>
+        <property name="USecurityquestionanswer" type="java.lang.String">
+            <column name="U_SECURITYQUESTIONANSWER" length="50" not-null="true" />
+        </property>
+        <property name="UState" type="java.lang.String">
+            <column name="U_STATE" length="10" not-null="true" />
+        </property>
+        <property name="ULevel" type="java.lang.Integer">
+            <column name="U_LEVEL" not-null="true" />
+        </property>
+        <property name="UCreatetime" type="java.sql.Timestamp">
+            <column name="U_CREATETIME" length="19" not-null="true" />
+        </property>
+        <property name="ULastlogontime" type="java.sql.Timestamp">
+            <column name="U_LASTLOGONTIME" length="19" />
+        </property>
+        <property name="UEmail" type="java.lang.String">
+            <column name="U_EMAIL" length="50" not-null="true" />
+        </property>
+        <property name="UQqnum" type="java.lang.Integer">
+            <column name="U_QQNUM" />
+        </property>
+        <property name="UProvinceandcity" type="java.lang.String">
+            <column name="U_PROVINCEANDCITY" length="50" />
+        </property>
+        <property name="UHeader" type="java.lang.String">
+            <column name="U_HEADER" length="500" />
+        </property>
+        <set name="sjLeavemessagesesForMReplyId" inverse="true">
+            <key>
+                <column name="M_REPLY_ID" />
+            </key>
+            <one-to-many class="top.sj.entity.SjLeavemessages" />
+        </set>
+        <set name="sjLeavemessagesesForMUId" inverse="true">
+            <key>
+                <column name="M_U_ID" not-null="true" />
+            </key>
+            <one-to-many class="top.sj.entity.SjLeavemessages" />
+        </set>
+        <set name="sjLifes" inverse="true">
+            <key>
+                <column name="L_U_ID" not-null="true" />
+            </key>
+            <one-to-many class="top.sj.entity.SjLife" />
+        </set>
+        <set name="sjArticleses" inverse="true">
+            <key>
+                <column name="A_U_ID" not-null="true" />
+            </key>
+            <one-to-many class="top.sj.entity.SjArticles" />
+        </set>
+    </class>
+</hibernate-mapping>

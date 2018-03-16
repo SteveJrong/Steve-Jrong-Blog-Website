@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+.pagination_nav{
+	position: relative;
+	overflow: hidden;
+}
+
+.pagination{
+	display: block;
+/* 	width: 21em; */
+	margin: 1em auto;
+	position: relative;
+	
+	overflow: hidden;
+    width: 28.5%;
+    padding-left: 2px;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>email_template.html</title>
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="this is my page">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+		div{
+			margin: 0px auto;
+			width: 80%;
+		}
+		
+		b{
+			color: red;
+			font-style: italic;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- 访客信息 -->
+	<div>
+		<h1>
+			今日浏览量：<b>${todayViews}</b>
+		</h1>
+		<hr/>
+		<h2>浏览历史：</h2>
+		<table>
+			<tr>
+				<th>IP地址</th>
+				<th>所属区域</th>
+				<th>首次访问时间</th>
+				<th>最后一次访问时间</th>
+			</tr>
+			<tr>
+				<td>${guestIP}</td>
+				<td>${guestArea}</td>
+				<td>${guestFirstVistedTime}</td>
+				<td>${guestLastVistedTime}</td>
+			</tr>
+		</table>
+	</div>
+	
+	<!-- 服务器信息 -->
+	<div>
+		<h1>服务器日志：</h1>
+		<hr/>
+		<table>
+			<tr>
+				<th>Nginx状态：</th>
+				<td>${nginxServerState}</td>
+			</tr>
+			
+			<tr>
+				<th>Tomcat状态：</th>
+				<td>${tomcatServerState}</td>
+			</tr>
+			
+			<tr>
+				<th>服务器重启情况：</th>
+				<!-- 如果重启过，则显示：是，[重启次数],[重启时间] -->
+				<td>${serverRebootState}</td>
+			</tr>
+			
+			<tr>
+				<th>Web App异常情况：</th>
+				<td>${webAppExceptionState}</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
